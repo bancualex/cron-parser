@@ -15,5 +15,5 @@ To use this parser, you need to have Node.js installed.
 
 To run the parser, use the following command in the terminal:
 
-```bash
+```
 node cron-parser.js "*/15 0 1,15 * 1-5 /usr/bin/find"
