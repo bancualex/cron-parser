@@ -3,29 +3,26 @@ const { validateField } = require('./validate-field');
 const parseAsterisk = (min, max) => {
   const rangeLength = max - min + 1;
 
-  const resultArray = Array(rangeLength)
+  return Array(rangeLength)
     .fill()
     .map((_, index) => min + index);
-
-  return resultArray;
 };
 
 const parseRange = (range, step = 1) => {
   const [start, end] = range.split('-').map(Number);
-  const result = [];
-  for (let i = start; i <= end; i += step) {
-    result.push(i);
-  }
-  return result;
+  const length = Math.floor((end - start) / step) + 1;
+
+  return Array(length)
+    .fill()
+    .map((_, i) => start + i * step);
 };
 
 const parseStep = (base, step, min, max) => {
   const start = base === '*' ? min : parseInt(base, 10);
-  const result = [];
-  for (let i = start; i <= max; i += parseInt(step, 10)) {
-    result.push(i);
-  }
-  return result;
+  const stepValue = parseInt(step, 10);
+  const length = Math.floor((max - start) / stepValue) + 1;
+
+  return Array.from({ length }).map((_, i) => start + i * stepValue);
 };
 
 const parseList = (list, min, max) => {
