@@ -122,6 +122,7 @@ describe('Cron Parser', () => {
     expect(result).toEqual(expectedOutput);
   });
 
+  // Sad Path Tests
   it('should handle invalid minute field', () => {
     const cronString = '60 0 1 1 0 /usr/bin/find';
     expect(() => parseCron(cronString)).toThrow('Invalid minute field');
